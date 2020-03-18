@@ -18,6 +18,7 @@ export const initialState = {
 }
 
 export const carReducer = (state = initialState, action) => {
+    // let updatedAdditionalFeatures = state.additionalFeatures.filter(item => !action.payload.id)
     console.log('*****', state);
     switch (action.type) {
         case REMOVE_FEATURE:
@@ -34,9 +35,8 @@ export const carReducer = (state = initialState, action) => {
                     ...state.car,
                     features: [...state.car.features, action.payload]
                 },
-                additionalFeatures: [
-                    ...state.additionalFeatures]
-                .splice(action.payload.index, 0)
+                additionalFeatures: state.additionalFeatures.filter(feature => feature.id !== action.payload.id)
+                
             };
         default:
         return state; 
