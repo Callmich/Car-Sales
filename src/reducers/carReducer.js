@@ -26,15 +26,17 @@ export const carReducer = (state = initialState, action) => {
             };
         case BUY_ITEM:
             console.log("state.aditionalPrice",state.additionalPrice)
-            console.log("action.payload.price",action.payload.price)
+            console.log("action.payload",action.payload)
             return{
                 ...state,
-                additionalPrice: state.additionalPrice + action.payload.price
-                ,
+                additionalPrice: state.additionalPrice + action.payload.price,
                 car: {
                     ...state.car,
                     features: [...state.car.features, action.payload]
                 },
+                additionalFeatures: [
+                    ...state.additionalFeatures]
+                .splice(action.payload.index, 0)
             };
         default:
         return state; 
